@@ -1,1 +1,406 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suraj Tripathi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #fff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --tag-bg: #f1f5f9;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 48px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* Tech tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    /* Experience */
+    .job {
+      margin-bottom: 32px;
+    }
+
+    .job:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .job-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .job-period {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .job ul {
+      padding-left: 20px;
+    }
+
+    .job li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .job .tech {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    /* Projects */
+    .project {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project:last-child {
+      border-bottom: none;
+    }
+
+    .project-info {
+      flex: 1;
+    }
+
+    .project-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      margin-left: 16px;
+    }
+
+    .project-link a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Education */
+    .education {
+      font-size: 0.95rem;
+    }
+
+    .education strong {
+      display: block;
+    }
+
+    .education span {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .interests {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 32px 16px; }
+      .header h1 { font-size: 1.6rem; }
+      .job-header { flex-direction: column; }
+      .project { flex-direction: column; gap: 4px; }
+      .project-link { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <h1>Suraj Tripathi</h1>
+      <p class="subtitle">Engineering Manager at StockX &middot; 11+ years in software engineering</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/surajtripathi/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/surajtripathi" target="_blank">GitHub</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Technologies</h2>
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">C++</span>
+        <span class="tag">Redis</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Go</span>
+        <span class="tag">Elasticsearch</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Engineering Manager</span>
+          <span class="job-period">Dec 2024 &ndash; Present</span>
+        </div>
+        <div class="job-company">StockX, Bangalore</div>
+        <ul>
+          <li>Managing a team of 7 engineers owning post-purchase experience services, CRM integrations, and internal platforms</li>
+          <li>Led and developed an AI Assist tool providing natural language search on orders &amp; purchases, integrated with Databricks AI and internal APIs</li>
+          <li>Early adopter of AI coding agents (Cursor), driving company-wide adoption. Fixed order dashboard and introduced enhanced filters used by 2000+ support, engineering &amp; operations teams daily, including backfilling 140M records</li>
+          <li>Managing high-scale services powering customer history and processing billions of messages daily</li>
+          <li>Driving roadmap, architecture, execution, and cross-functional alignment across globally distributed teams</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Senior Software Engineer &amp; Tech Lead</span>
+          <span class="job-period">Mar 2021 &ndash; Dec 2024</span>
+        </div>
+        <div class="job-company">StockX, Bangalore</div>
+        <ul>
+          <li>Led end-to-end migration from MSD to Gladly (chatbot, articles, customer data, chat history) with zero production issues &mdash; recognized company-wide as one of the smoothest migrations</li>
+          <li>Built first-of-its-kind AI-assisted search tool for agents; won Top 3 hackathon project (~$6,000 award)</li>
+          <li>Scaled India engineering operations as the first team member during US transition, establishing ownership and stabilizing core systems</li>
+          <li>Led payments engineering: integrated multiple PSPs, built scalable payments platform with idempotency and clean state-transition rules</li>
+          <li>Re-architected a monolith into microservice architecture</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Senior Software Engineer</span>
+          <span class="job-period">Aug 2017 &ndash; Mar 2021</span>
+        </div>
+        <div class="job-company">Zeta, Bangalore</div>
+        <ul>
+          <li>Led and built the Gifting &amp; Rewards and Recognition platform for corporates and retail users</li>
+          <li>Built a highly scalable payment platform powering multiple Zeta products</li>
+          <li>Built a cloud platform providing application runtime (logging, monitoring, scalability, isolation, ingress)</li>
+        </ul>
+        <div class="tech">Java, PostgreSQL, Kubernetes, Go</div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Backend Engineer</span>
+          <span class="job-period">Nov 2015 &ndash; Jul 2017</span>
+        </div>
+        <div class="job-company">Paytm, Bangalore</div>
+        <ul>
+          <li>Built core features for Paytm Travel products (Flight, Bus, Insurance)</li>
+          <li>Rewrote flight architecture to fix a critical problem with severe business impact</li>
+          <li>Developed a CLI tool for local testing of flight operations, saving dev time and stabilizing staging</li>
+          <li>Improved bus search results time by 10x (5s to 500ms)</li>
+          <li>Designed and developed Paytm Insurance product from scratch</li>
+        </ul>
+        <div class="tech">Node.js, Nginx, Redis, MongoDB, Elasticsearch, Logstash</div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Software Developer</span>
+          <span class="job-period">Jun 2014 &ndash; Nov 2015</span>
+        </div>
+        <div class="job-company">Oracle, Hyderabad</div>
+        <ul>
+          <li>Worked on cloud commerce application, built web reporting tool and admin dashboard</li>
+          <li>Worked on cloud commerce storefront product</li>
+        </ul>
+        <div class="tech">Java, Knockout.js, JavaScript, REST API, HTML/CSS</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">Web Crawler</div>
+          <div class="project-desc">Stores unique crawled links in a CSV file</div>
+        </div>
+        <div class="project-link"><a href="https://github.com/surajtripathi/crawl-medium-dot-com-sync" target="_blank">GitHub</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">Async Job Scheduler</div>
+          <div class="project-desc">Generic job scheduler with customization support</div>
+        </div>
+        <div class="project-link"><a href="https://github.com/surajtripathi/job_scheduler" target="_blank">GitHub</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">Log Hosting</div>
+          <div class="project-desc">Pushes live logs to all connected web clients</div>
+        </div>
+        <div class="project-link"><a href="https://github.com/surajtripathi/log-hosting" target="_blank">GitHub</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">RequestMaker</div>
+          <div class="project-desc">HTTP/HTTPS debugging interface for API testing</div>
+        </div>
+        <div class="project-link"><a href="http://requestmaker.herokuapp.com/" target="_blank">Demo</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">NewsMap</div>
+          <div class="project-desc">Reddit news threads from various Indian regions on a map</div>
+        </div>
+        <div class="project-link"><a href="https://newsonmap.herokuapp.com/" target="_blank">Demo</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">Bookmark Manager</div>
+          <div class="project-desc">Chrome extension for better bookmark management</div>
+        </div>
+        <div class="project-link"><a href="https://github.com/surajtripathi/bookmarkManager" target="_blank">GitHub</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">God Of Cricket</div>
+          <div class="project-desc">2048 game with cricket theme &mdash; slide tiles to reach Tendulkar</div>
+        </div>
+        <div class="project-link"><a href="http://god-of-cricket.herokuapp.com/" target="_blank">Demo</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-info">
+          <div class="project-name">Offline Signature Verification</div>
+          <div class="project-desc">Signature validation using MATLAB image analysis</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="education">
+        <strong>B.Tech in Information Technology</strong>
+        <span>NIT Allahabad, India &middot; 2014 &middot; CGPA 7.6</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Interests</h2>
+      <p class="interests">Animal lover, especially dogs. Interested in the Indian political scene.</p>
+    </section>
+
+  </div>
+</body>
+</html>
