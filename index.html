@@ -95,6 +95,49 @@
       color: var(--text);
     }
 
+    /* Blog */
+    .blog-post {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blog-post:last-child {
+      border-bottom: none;
+    }
+
+    .blog-post-info {
+      flex: 1;
+    }
+
+    .blog-post-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .blog-post-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .blog-post-title a:hover {
+      color: var(--accent);
+    }
+
+    .blog-post-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .blog-post-date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      margin-left: 16px;
+    }
+
     /* Experience */
     .job {
       margin-bottom: 32px;
@@ -241,6 +284,18 @@
         <span class="tag">Kubernetes</span>
         <span class="tag">Go</span>
         <span class="tag">Elasticsearch</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Blog</h2>
+
+      <div class="blog-post">
+        <div class="blog-post-info">
+          <div class="blog-post-title"><a href="/blog/claude-voice.html">I Built a Voice Plugin for Claude Code</a></div>
+          <div class="blog-post-excerpt">Type less, talk more. A /voice command that records audio in the terminal, transcribes it, and feeds the text to Claude.</div>
+        </div>
+        <div class="blog-post-date">Mar 2026</div>
       </div>
     </section>
 

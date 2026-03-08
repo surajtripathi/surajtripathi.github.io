@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Built a Voice Plugin for Claude Code | Suraj Tripathi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #fff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --tag-bg: #f1f5f9;
+      --code-bg: #f8f9fa;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .post-date {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .post-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .diagram {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .callout {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .post-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 2px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .post-footer a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 32px 16px; }
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="/" class="back-link">&larr; Back</a>
+
+    <p class="post-date">March 8, 2026</p>
+    <h1>I Built a Voice Plugin for Claude Code</h1>
+    <p class="post-subtitle">Type less, talk more. A /voice command that records audio in the terminal, transcribes it, and feeds the text to Claude as if you typed it.</p>
+
+    <div class="tags">
+      <span class="tag">Claude Code</span>
+      <span class="tag">Python</span>
+      <span class="tag">Voice Input</span>
+      <span class="tag">Open Source</span>
+    </div>
+
+    <h2>The problem</h2>
+
+    <p>I spend a lot of time in Claude Code. Typing out detailed prompts gets tedious, especially when you're explaining a complex bug or describing an architecture change. Sometimes you just want to <em>say</em> what you need.</p>
+
+    <p>I looked around for existing solutions. There are a few community projects -- voice notification hooks, TTS feedback systems, MCP server wrappers. None of them did the one simple thing I wanted: speak into the terminal, get a transcript, have Claude respond to it.</p>
+
+    <h2>What it does</h2>
+
+    <p>Inside Claude Code, you type <code>/voice</code>. Your microphone starts recording. You talk. It auto-stops after 5 seconds of silence, transcribes the audio via Google Speech API, and Claude responds as if you typed that text.</p>
+
+    <pre>  Voice Input
+
+  * Recording (auto-stops after 5s silence)
+  * [6.2s]
+  * Recorded 8.1s
+  * create a REST API with FastAPI
+
+create a REST API with FastAPI          &lt;-- Claude sees this</pre>
+
+    <p>That's it. No browser window. No GUI. No MCP server. Just audio in, text out, inline in your terminal.</p>
+
+    <h2>How it works</h2>
+
+    <div class="diagram">Microphone
+    |
+    v
+sounddevice (records int16 PCM at 16kHz)
+    |
+    v
+Silence detection (numpy amplitude check)
+    |
+    v
+scipy.io.wavfile (writes WAV buffer)
+    |
+    v
+SpeechRecognition (Google Speech API)
+    |
+    v
+stdout -- Claude Code reads this as your message</div>
+
+    <p>The key design choice: status messages (recording indicator, timing, transcription progress) go to <code>stderr</code>. Only the final transcript goes to <code>stdout</code>. Claude Code reads stdout as user input, so this separation is what makes the whole thing work.</p>
+
+    <h2>Two modes</h2>
+
+    <p>The script detects whether it's running in a real terminal or piped through Claude Code:</p>
+
+    <ul>
+      <li><strong>TTY mode</strong> (running <code>cv</code> in your terminal): Press Enter to stop recording, Esc to cancel. Interactive controls via raw terminal input.</li>
+      <li><strong>Non-TTY mode</strong> (running via <code>/voice</code> in Claude Code): Auto-stops after 5 seconds of silence. No keyboard interaction needed since Claude owns the terminal.</li>
+    </ul>
+
+    <p>The detection is a single <code>os.isatty(sys.stdin.fileno())</code> check. Simple, but it makes the tool feel native in both contexts.</p>
+
+    <h2>Installation</h2>
+
+    <p>Three commands:</p>
+
+    <pre>git clone https://github.com/iAmSurajT/claude-voice.git
+cd claude-voice
+./install.sh</pre>
+
+    <p>The installer handles everything: portaudio via Homebrew, Python packages, creating the <code>/voice</code> slash command in <code>~/.claude/commands/</code>, and adding a <code>cv</code> shell alias. Works on macOS and Linux.</p>
+
+    <div class="callout">After install, <code>/voice</code> works globally in any project -- it's a user-level Claude Code command, not project-scoped.</div>
+
+    <h2>The silence detection problem</h2>
+
+    <p>The hardest part wasn't the audio recording or the transcription. It was deciding when to stop.</p>
+
+    <p>Stop too early and you cut someone off mid-sentence while they're thinking. Stop too late and they're sitting in silence wondering if the tool froze.</p>
+
+    <p>The current approach: track the mean amplitude of each audio chunk. If it stays below a threshold (800 by default) for 5 consecutive seconds <em>after detecting at least one non-silent chunk</em>, stop. That "after speech" condition is important -- without it, the recording would stop before you even start talking.</p>
+
+    <pre>def is_silent(audio_chunk, threshold=SILENCE_THRESHOLD):
+    return np.abs(audio_chunk).mean() &lt; threshold</pre>
+
+    <p>5 seconds is generous. Most natural pauses in speech are 1-2 seconds. But I'd rather wait a bit longer than clip someone's thought. The values are configurable if your environment needs different tuning.</p>
+
+    <h2>What I'd change</h2>
+
+    <p>A few things I'm thinking about for future versions:</p>
+
+    <ul>
+      <li><strong>Local transcription.</strong> The current setup sends audio to Google's Speech API. It works, it's free, but it adds network latency and a dependency on an external service. Whisper running locally would solve both.</li>
+      <li><strong>Streaming transcription.</strong> Right now the full audio is transcribed in one shot after recording stops. Streaming would show words appearing as you speak.</li>
+      <li><strong>Better silence detection.</strong> The amplitude threshold is crude. A proper VAD (voice activity detection) model would handle background noise, typing sounds, and variable mic levels more gracefully.</li>
+    </ul>
+
+    <h2>Try it</h2>
+
+    <p>The repo is public: <a href="https://github.com/iAmSurajT/claude-voice" target="_blank">github.com/iAmSurajT/claude-voice</a></p>
+
+    <p>Install takes about 30 seconds. If you use Claude Code regularly, it's worth the setup. Talking through a problem is faster than typing it out, and the transcript quality from Google Speech is solid for technical vocabulary.</p>
+
+    <div class="post-footer">
+      <p>Built by <a href="/">Suraj Tripathi</a>. Source on <a href="https://github.com/iAmSurajT/claude-voice" target="_blank">GitHub</a>.</p>
+    </div>
+
+  </div>
+</body>
+</html>
