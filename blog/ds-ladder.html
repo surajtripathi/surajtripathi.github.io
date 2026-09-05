@@ -1,4 +1,3 @@
-<!-- Paste this whole block into your blog post (HTML mode). Styles are scoped to .dsl so they won't leak into the rest of your site. -->
 <style>
     .dsl { max-width: 44rem; margin: 0 auto; line-height: 1.55; }
     .dsl h2 { margin: 0 0 .35rem; font-size: 1.9rem; line-height: 1.15; }
@@ -19,6 +18,7 @@
     .dsl .dsl-order { margin-top: 2.5rem; padding: 1rem 1.2rem; border-left: 4px solid currentColor; }
     .dsl .dsl-order p { margin: .4rem 0; }
     .dsl .dsl-cta { margin: 0 0 2.5rem; font-weight: 600; }
+    .dsl h3 + p, .dsl p + p { margin: 0 0 1rem; }
     @media (max-width: 480px) {
         .dsl li { grid-template-columns: 3rem 1fr; }
         .dsl .dsl-diff { grid-column: 2; justify-self: start; margin-top: .2rem; }
@@ -29,6 +29,12 @@
     <h2>Data structures, from scratch</h2>
     <p class="dsl-lede">A LeetCode practice list organized by data structure, roughly easy → hard within each group. These are picked because they make you actually build the structure rather than reach for a library one.</p>
     <p class="dsl-cta"><a href="https://leetcode.com/problem-list/dbjfx0r7/">Open the full list on LeetCode</a></p>
+
+    <h3>Why this list</h3>
+    <p>I've been enjoying low-level programming lately, the kind where you're working with actual data structures. Two recent projects pushed me here.</p>
+    <p>The first was a key-value store in Go built around memtables, a write-ahead log, and SSTables an LSM-tree, end to end. The second was a B-tree storage engine in the spirit of Postgres: how rows are laid out on pages, how the pager reads and writes them, and how updates are made durable. All of it handwritten.</p>
+    <p>Building those was a lot of fun, and it made me realise this stuff is addictive. I'm just enjoying it as I build new things and turning them into blog posts in case they help someone. This one I actually wrote for my friend, she wanted my DS Ladder practice list, and sharing a bare LeetCode list doesn't carry any context, so I asked Claude to write one. This ladder is my way of going back through the fundamentals deliberately, one structure at a time, from scratch. I'll write up the B-tree and LSM-tree builds separately in later posts.</p>
+
     <h3>Arrays, two pointers, sliding window</h3>
     <ol>
         <li><span class="dsl-num">26</span><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove Duplicates from Sorted Array</a><span class="dsl-diff dsl-e">Easy</span></li>
@@ -130,6 +136,5 @@
 
     <aside class="dsl-order">
         <p><strong>Suggested order:</strong> Linked list → Stack/Queue → Hash map → Binary tree → BST → Heap → Trie → Graph → Union-Find → Design → Segment tree.</p>
-        <p>The last one or two problems in each group are where the real time goes — LRU Cache, Word Search II, Course Schedule, and Find Median from Data Stream each combine multiple concepts.</p>
     </aside>
 </article>
